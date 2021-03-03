@@ -45,23 +45,49 @@ document.querySelector(".btn-roll").addEventListener('click', function (){
     else {
 
         // ene toglogchiin elljinde tsugluusan onoog 0 bolgon 
-        roundScore = 0;
-        document.getElementById("current-"+ activePlayer).textContent =0;
-        // 1 buusan toglogch eelj solinno
-        activePlayer === 0 ? (activePlayer =1) : (ctivePlayer = 0);
-        
-        // ulaan tsegiig haij oloh  
-        document.querySelector(".player-0-panel").classList.toggle("active");
-        document.querySelector(".player-1-panel").classList.toggle("active");
-
-        // shoog tvr alga bolgi 
-        diceDom.style.display = "none";
-
-        
-
-
+        swichtToNextPlayer();
     }
 
 });
+// Hold tovch 
+document.querySelector(".btn-hold").addEventListener("click", function(){
+    // ug toglogchiin tsugluusan eeljni onoog global onoond nemj ogno 
+    
+    score[activePlayer] = score[activePlayer] + roundScore; 
 
-//dfd
+     // delgets deer toogiin oorchilno
+     document.getElementById("score-"+ activePlayer).textContent = score[activePlayer];
+    // ug toglogchiig hojson eseh shalgaj 
+    
+    if (score[activePlayer] >= 20){
+
+        document.getElementById("name-" + activePlayer).textContent = "WINNER!!!";
+        document.querySelector(".player-"+ activePlayer+ '-panel').classList.add("winner");
+    }else {
+        swichtToNextPlayer();
+    }
+   
+
+    // eeljiin onoog 0 bolgono
+    
+
+    // toglogchiig eeljiig solino 
+})
+
+
+function swichtToNextPlayer(){
+    roundScore = 0;
+    document.getElementById("current-"+ activePlayer).textContent =0;
+    // 1 buusan toglogch eelj solinno
+    activePlayer === 0 ? (activePlayer =1) : (activePlayer = 0);
+    
+    // ulaan tsegiig haij oloh  
+    document.querySelector(".player-0-panel").classList.toggle("active");
+    document.querySelector(".player-1-panel").classList.toggle("active");
+
+    // shoog tvr alga bolgi 
+    diceDom.style.display = "none";
+
+}
+
+// 
