@@ -1,19 +1,17 @@
+var activePlayer, score, roundScore;
+
 // toglogchiin eeljiig hadgalah huvisagch player1  0
-var activePlayer = 0;
+var diceDom = document.querySelector('.dice');
+function initGame(){
+    activePlayer = 0;
 
 // toglogchiin tsugluusan onoog hadgalah huvisagch 
-var score = [0, 0];
+   score = [0, 0];
 
 
 // toglogchiin eeljiin tsugluulj baigaa onoog hadgalah huvisagch 
 
-var roundScore = 0;
-
-// shoo ali talaara buuhiig hadgalah huvisagch 1-6 gesen huvisagch 
-
-
-// document.querySelector('#score-0').textContent = dice;
-// <div class="player-score" id="score-0">43</div>
+    roundScore = 0;
 
 // document.querySelector('#score-0').textContent = dice;
 
@@ -22,10 +20,24 @@ document.getElementById("score-1").textContent="0"; // hurdan haij olno  ID
 
 document.getElementById('current-0').textContent = "0";
 document.getElementById('current-1').textContent = "0";// html ees class aar n haij olj oorchilno 
-
-var diceDom = document.querySelector('.dice');
-// shooni zurga alga bolgono 
 diceDom.style.display = "none";
+
+document.getElementById("name-0").textContent = "Player 1";
+document.getElementById("name-1").textContent = "Player 2";
+
+document.querySelector(".player-0-panel").classList.remove("winner");
+document.querySelector(".player-1-panel").classList.remove("winner");
+
+document.querySelector(".player-0-panel").classList.remove("active");
+document.querySelector(".player-1-panel").classList.remove("active");
+
+document.querySelector(".player-1-panel").classList.add("active");
+
+}
+initGame();
+
+// shooni zurga alga bolgono 
+
 // shoog shideh event 
 document.querySelector(".btn-roll").addEventListener('click', function (){
 
@@ -59,7 +71,7 @@ document.querySelector(".btn-hold").addEventListener("click", function(){
      document.getElementById("score-"+ activePlayer).textContent = score[activePlayer];
     // ug toglogchiig hojson eseh shalgaj 
     
-    if (score[activePlayer] >= 20){
+    if (score[activePlayer] >= 100){
 
         document.getElementById("name-" + activePlayer).textContent = "WINNER!!!";
         document.querySelector(".player-"+ activePlayer+ '-panel').classList.add("winner");
@@ -90,4 +102,6 @@ function swichtToNextPlayer(){
 
 }
 
-// 
+// New game ajilgaand oruulah 
+
+document.querySelector(".btn-new").addEventListener("click", initGame());
